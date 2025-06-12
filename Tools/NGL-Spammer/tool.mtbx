@@ -1,0 +1,13 @@
+`Tool
+lang:py:
+main:NGLSpamer.py:
+pyreq:requirements.txt:
+command:nglspammer:
+aliases:ngls,nglspam:
+helpinfo:Tool for Spamming on NGL:
+
+`General
+dispname:"NGL Spammer":
+credits:"pozdro70, 0MeMo07":
+branch:"MGUI1":
+version:"1.0.0":

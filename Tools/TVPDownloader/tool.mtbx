@@ -1,0 +1,13 @@
+`Tool
+lang:py:
+main:tvp_downloader.py:
+pyreq:requirements.txt:
+command:tvpdownloader:
+aliases:tvpd,tvpdwnld:
+helpinfo:This tool allows downloading videos from tvp site:
+
+`General
+dispname:"TVP Donwloader":
+credits:"pozdro70, XXX":
+branch:"MGUI1":
+version:"1.0.0":
