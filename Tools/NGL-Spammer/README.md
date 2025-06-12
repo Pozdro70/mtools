@@ -36,10 +36,3 @@ If there are 4 consecutive unsuccessful submissions, the script will change the 
 ## Error Handling
 
 - If a bad proxy is encountered, the script will select a new proxy and retry.
-
-## Screenshots
-![image](https://github.com/0MeMo07/NGL-Spammer/assets/103096364/edba601d-7367-413c-94b5-44cb26b98759)
-
-## Support me
-
-<a href="https://www.buymeacoffee.com/SmakeMeMo" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/black_img.png" alt="Buy Me A Coffee">
