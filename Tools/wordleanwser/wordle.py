@@ -19,11 +19,12 @@ print(Colorate.Vertical(Colors.cyan_to_green,"""
 print(Colorate.Color(Colors.cyan,"Today Worlde Anwser:"),Colorate.Color(Colors.green,requests.get(f"https://www.nytimes.com/svc/wordle/v2/{date.today().isoformat()}.json").json()['solution']))
 print(Colorate.Vertical(Colors.cyan_to_green,"""
 1 - Get wordle anwser for any day
-2 - Exit
+2 - Play Wordle in CMD
+3 - Exit
 """))
 promptinp=int(input(Colorate.Horizontal(Colors.cyan_to_blue,"[1,2]>")))
 
-if(promptinp==2):
+if(promptinp==3):
     exit()
 elif(promptinp==1):
     print(Colorate.Vertical(Colors.cyan_to_green,"""
