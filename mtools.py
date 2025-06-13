@@ -144,10 +144,11 @@ def main(debug):
                                 installed_packages.append(str(package).split(' ')[0])
                             
                             for j in range(len(reqs)):
-                                if(not(reqs[i] in installed_packages)):
-                                    if debug: print(Colorate.Color(Colors.orange,"[i] package "+str(reqs[i])+" not installed, Installing..."))
-                                    os.system("pip install "+str(reqs[i]))
-                                    if debug: print(Colorate.Color(Colors.orange,"[i] package "+str(reqs[i])+" installed"))
+                                if(not(reqs[j] in installed_packages)):
+                                    
+                                    if debug: print(Colorate.Color(Colors.orange,"[i] package "+str(reqs[j])+" not installed, Installing..."))
+                                    os.system("pip install "+str(reqs[j]))
+                                    if debug: print(Colorate.Color(Colors.orange,"[i] package "+str(reqs[j])+" installed"))
                         
                         if debug: print(Colorate.Color(Colors.orange,"[i] registering commands"))
                         allcmds.append(lookForKeyInMTBX("command",tooldata))
