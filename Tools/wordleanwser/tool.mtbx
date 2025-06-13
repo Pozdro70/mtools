@@ -1,0 +1,13 @@
+`Tool
+lang:py:
+main:wordle.py:
+pyreq:requirements.txt:
+command:wordleanwser:
+aliases:wordle,wordlea:
+helpinfo:This tool allows getting todays wordle anwser and search for wordle anwsers from custom date:
+
+`General
+dispname:"Wordle Anwser":
+credits:"pozdro70":
+branch:"MGUI1":
+version:"1.0.0":

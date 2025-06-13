@@ -1,0 +1,53 @@
+import requests
+from datetime import date
+from pystyle import Colors, Colorate
+import os
+
+os.system('cls' if os.name == 'nt' else 'clear')
+
+print(Colorate.Vertical(Colors.cyan_to_green,"""
+ █████   ███   █████                        █████ ████             █████████                                                        
+░░███   ░███  ░░███                        ░░███ ░░███            ███░░░░░███                                                       
+ ░███   ░███   ░███   ██████  ████████   ███████  ░███   ██████  ░███    ░███  ████████   █████ ███ █████  █████   ██████  ████████ 
+ ░███   ░███   ░███  ███░░███░░███░░███ ███░░███  ░███  ███░░███ ░███████████ ░░███░░███ ░░███ ░███░░███  ███░░   ███░░███░░███░░███
+ ░░███  █████  ███  ░███ ░███ ░███ ░░░ ░███ ░███  ░███ ░███████  ░███░░░░░███  ░███ ░███  ░███ ░███ ░███ ░░█████ ░███████  ░███ ░░░ 
+  ░░░█████░█████░   ░███ ░███ ░███     ░███ ░███  ░███ ░███░░░   ░███    ░███  ░███ ░███  ░░███████████   ░░░░███░███░░░   ░███     
+    ░░███ ░░███     ░░██████  █████    ░░████████ █████░░██████  █████   █████ ████ █████  ░░████░████    ██████ ░░██████  █████    
+     ░░░   ░░░       ░░░░░░  ░░░░░      ░░░░░░░░ ░░░░░  ░░░░░░  ░░░░░   ░░░░░ ░░░░ ░░░░░    ░░░░ ░░░░    ░░░░░░   ░░░░░░  ░░░░░     
+
+"""))
+print(Colorate.Color(Colors.cyan,"Today Worlde Anwser:"),Colorate.Color(Colors.green,requests.get(f"https://www.nytimes.com/svc/wordle/v2/{date.today().isoformat()}.json").json()['solution']))
+print(Colorate.Vertical(Colors.cyan_to_green,"""
+1 - Get wordle anwser for any day
+2 - Exit
+"""))
+promptinp=int(input(Colorate.Horizontal(Colors.cyan_to_blue,"[1,2]>")))
+
+if(promptinp==2):
+    exit()
+elif(promptinp==1):
+    print(Colorate.Vertical(Colors.cyan_to_green,"""
+1-Today wordle anwser
+2-Tommorow worlde anwser
+3-Yesterday wordle anwser
+4-Wordle anwser for custom day
+"""))
+        
+    waprompt=int(input(Colorate.Horizontal(Colors.cyan_to_blue,"[1,2,3,4]>")))
+    
+    if(waprompt==1):
+        print(Colorate.Color(Colors.cyan,f"Today ({date.today().isoformat()}) Worlde Anwser:"),Colorate.Color(Colors.green,requests.get(f"https://www.nytimes.com/svc/wordle/v2/{date.today().isoformat()}.json").json()['solution']))
+    elif(waprompt==2):
+        wdate=date(date.today().year,date.today().month,date.today().day+1)
+        print(Colorate.Color(Colors.cyan,f"Tommorow ({wdate.isoformat()}) Worlde Anwser:"),Colorate.Color(Colors.green,requests.get(f"https://www.nytimes.com/svc/wordle/v2/{wdate.isoformat()}.json").json()['solution']))
+    elif(waprompt==3):
+        wdate=date(date.today().year,date.today().month,date.today().day-1)
+        print(Colorate.Color(Colors.cyan,f"Yesterday ({date.isoformat()}) Worlde Anwser:"),Colorate.Color(Colors.green,requests.get(f"https://www.nytimes.com/svc/wordle/v2/{wdate.isoformat()}.json").json()['solution']))
+    elif(waprompt==4):
+        print(Colorate.Color(Colors.green,"Input date in ISO format (<Year>-<Month>-<Day> example: 2025-06-13)"))
+        wdate=input(Colorate.Color(Colors.cyan,"Date>"))
+        try:
+            print(Colorate.Color(Colors.cyan,f"({wdate}) Worlde Anwser:"),Colorate.Color(Colors.green,requests.get(f"https://www.nytimes.com/svc/wordle/v2/{wdate}.json").json()['solution']))
+        except Exception as e:
+            print(Colorate.Color(Colors.red,"Wordle anwser not found"))
+#iso date format: '2002-03-11'
