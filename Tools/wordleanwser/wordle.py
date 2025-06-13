@@ -51,4 +51,6 @@ elif(promptinp==1):
             print(Colorate.Color(Colors.cyan,f"({wdate}) Worlde Anwser:"),Colorate.Color(Colors.green,requests.get(f"https://www.nytimes.com/svc/wordle/v2/{wdate}.json").json()['solution']))
         except Exception as e:
             print(Colorate.Color(Colors.red,"Wordle anwser not found"))
-#iso date format: '2002-03-11'
+    #iso date format: '2002-03-11'
+elif(promptinp==2):
+    print("not done yet")
