@@ -55,12 +55,18 @@ elif(promptinp==1):
 elif(promptinp==2):
     for i in range(7):
         inp=input(Colorate.Color(Colors.green,">"))
-        inplist=list(inp)
-        passlist=list(requests.get(f"https://www.nytimes.com/svc/wordle/v2/{date.today().isoformat()}.json").json()['solution'])
 
-        for j in range(5):
-            if(inplist[j]==passlist[j]):
-                print(Colorate.Color(Colors.green,inplist[j]))
-            else:
-                print(Colorate.Color(Colors.red,inplist[j]))
+        if(len(list(inp))==5):
+            inplist=list(inp)
+            passlist=list(requests.get(f"https://www.nytimes.com/svc/wordle/v2/{date.today().isoformat()}.json").json()['solution'])
+            outbuff=""
+            for j in range(5):
+                if(inplist[j]==passlist[j]):
+                    outbuff+=(Colorate.Color(Colors.green,inplist[j]))
+                elif(inplist[j] in passlist):
+                    outbuff+=(Colorate.Color(Colors.yellow,inplist[j]))
+                elif(not(inplist[j] in passlist)):
+                    outbuff+=(Colorate.Color(Colors.gray,inplist[j]))
+            
+            print(outbuff)
             
