@@ -1,3 +1,0 @@
-@echo off
-echo Starting mtools...
-python mtools.py
