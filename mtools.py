@@ -36,33 +36,32 @@ def addSpacesIntoListElements(name,digits,toAdd=' '):
     
     return key
 
-def getRedmeForCommand(cmd,returnBoolIfHasReadme=False):
-    
+def getReadmeForCmd(cmd):
+    readmefilen=getMTBXKeyFromCmd("readme",cmd)
+    readmefiledata="No more info found"
     toolsDir=os.listdir("Tools")
     os.chdir("Tools")
     for i in range(len(toolsDir)):
         os.chdir(toolsDir[i])
-
         with open("tool.mtbx", "r") as toolfile:
             tooldata=toolfile.readlines()
             toolfile.close()
-        if(lookForKeyInMTBX("command",tooldata)==cmd):
-            
-            if(os.path.exists("README.md") and returnBoolIfHasReadme):
-                return True
-            
-            if((not(os.path.exists("README.md"))) and returnBoolIfHasReadme):
-                return False
-            
-            with open("README.md", "r") as readmefile:
-                readmedata=readmefile.read()
-                readmefile.close()
-
-            if(not(returnBoolIfHasReadme)):
-                return readmedata
+        
+        if(not(readmefilen=="None")):
+            if(lookForKeyInMTBX("command",tooldata)==cmd):
+                with open(readmefilen, "r") as readmefile:
+                    readmefiledata=readmefile.read()
+                    readmefile.close()
+        else:
+            readmefiledata="No more info found..."
 
         os.chdir("../")#go up one folder
     os.chdir("../")#go up one folder
+
+    return readmefiledata
+
+
+
 
 def pyLaunchTool(cmd,args):
     toolsDir=os.listdir("Tools")
@@ -208,13 +207,12 @@ def main(debug):
                     print(Colorate.Color(Colors.orange,addSpacesIntoListElements(cmd,20,' ')),getMTBXKeyFromCmd("helpinfo",cmd))
             
         
-            if(not(prompt.split(' ')[1] =="" or prompt.split(' ')[1] == " " or prompt.split(' ')[1] == None)):
+            if(len(prompt.split(' '))>1 and not(prompt.split(' ')[1] =="" or prompt.split(' ')[1] == " " or prompt.split(' ')[1] == None) and prompt.split(' ')[1] in allcmds):
                 print(Colorate.Horizontal(Colors.yellow_to_green,"---------------------------------------------------"),'\n')
                 print(Colorate.Horizontal(Colors.yellow_to_green,"HELP PAGE FOR "+prompt.split(' ')[1]),'\n')
                 print("Short Explanation: "+Colorate.Color(Colors.yellow,getMTBXKeyFromCmd("helpinfo",prompt.split(' ')[1])),'\n')
-                if prompt.split(' ')[1]: print("Explanation: "+Colorate.Color(Colors.yellow,getRedmeForCommand(prompt.split(' ')[1])),'\n')
-            os.chdir("../")
-            os.chdir("../")
+                
+                if prompt.split(' ')[1]: print("Explanation: "+Colorate.Color(Colors.yellow,getReadmeForCmd(prompt.split(' ')[1])),'\n')
 
         elif(prompt.split(' ')[0] in allcmds ):
             if(not(getMTBXKeyFromCmd("lang",prompt.split(' ')[0]) == None)):
