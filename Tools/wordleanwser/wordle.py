@@ -16,7 +16,7 @@ print(Colorate.Vertical(Colors.cyan_to_green,"""
      ░░░   ░░░       ░░░░░░  ░░░░░      ░░░░░░░░ ░░░░░  ░░░░░░  ░░░░░   ░░░░░ ░░░░ ░░░░░    ░░░░ ░░░░    ░░░░░░   ░░░░░░  ░░░░░     
 
 """))
-print(Colorate.Color(Colors.cyan,"Today Worlde Anwser:"),Colorate.Color(Colors.green,requests.get(f"https://www.nytimes.com/svc/wordle/v2/{date.today().isoformat()}.json").json()['solution']))
+#print(Colorate.Color(Colors.cyan,"Today Worlde Anwser:"),Colorate.Color(Colors.green,requests.get(f"https://www.nytimes.com/svc/wordle/v2/{date.today().isoformat()}.json").json()['solution']))
 print(Colorate.Vertical(Colors.cyan_to_green,"""
 1 - Get wordle anwser for any day
 2 - Play Wordle in CMD
@@ -74,12 +74,9 @@ elif(promptinp==2):
                     outbuff+=(Colorate.Color(Colors.gray,inplist[j]))
             
             print(outbuff)
-            
             guessedWords +=1
         else:
             if(inp=="0" or inp.lower()=="exit"):
                 break
             else:
                 print(Colorate.Color(Colors.red,"Word shoud exist and have 5 letters"))
-
-            

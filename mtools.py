@@ -37,21 +37,29 @@ def addSpacesIntoListElements(name,digits,toAdd=' '):
     return key
 
 def getRedmeForCommand(cmd,returnBoolIfHasReadme=False):
+    
     toolsDir=os.listdir("Tools")
     os.chdir("Tools")
     for i in range(len(toolsDir)):
         os.chdir(toolsDir[i])
-        if(os.path.exists("README.md") and returnBoolIfHasReadme):
-            return True
-        if((not(os.path.exists("README.md"))) and returnBoolIfHasReadme):
-            return False
-        
-        with open("README.md", "r") as readmefile:
-            readmedata=readmefile.read()
-            readmefile.close()
 
-        if(not(returnBoolIfHasReadme)):
-            return readmedata
+        with open("tool.mtbx", "r") as toolfile:
+            tooldata=toolfile.readlines()
+            toolfile.close()
+        if(lookForKeyInMTBX("command",tooldata)==cmd):
+            
+            if(os.path.exists("README.md") and returnBoolIfHasReadme):
+                return True
+            
+            if((not(os.path.exists("README.md"))) and returnBoolIfHasReadme):
+                return False
+            
+            with open("README.md", "r") as readmefile:
+                readmedata=readmefile.read()
+                readmefile.close()
+
+            if(not(returnBoolIfHasReadme)):
+                return readmedata
 
         os.chdir("../")#go up one folder
     os.chdir("../")#go up one folder
@@ -205,8 +213,10 @@ def main(debug):
                 print(Colorate.Horizontal(Colors.yellow_to_green,"HELP PAGE FOR "+prompt.split(' ')[1]),'\n')
                 print("Short Explanation: "+Colorate.Color(Colors.yellow,getMTBXKeyFromCmd("helpinfo",prompt.split(' ')[1])),'\n')
                 if prompt.split(' ')[1]: print("Explanation: "+Colorate.Color(Colors.yellow,getRedmeForCommand(prompt.split(' ')[1])),'\n')
-        
-        if(prompt.split(' ')[0] in allcmds):
+            os.chdir("../")
+            os.chdir("../")
+
+        elif(prompt.split(' ')[0] in allcmds ):
             if(not(getMTBXKeyFromCmd("lang",prompt.split(' ')[0]) == None)):
                 if(getMTBXKeyFromCmd("lang",prompt.split(' ')[0]).lower()=="py"):
                     if(len(prompt.split(' '))>1):
