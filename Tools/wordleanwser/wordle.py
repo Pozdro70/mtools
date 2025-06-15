@@ -53,13 +53,18 @@ elif(promptinp==1):
             print(Colorate.Color(Colors.red,"Wordle anwser not found"))
     #iso date format: '2002-03-11'
 elif(promptinp==2):
-    for i in range(7):
+    rawwordlist=requests.get("https://gist.githubusercontent.com/dracos/dd0668f281e685bad51479e5acaadb93/raw/6bfa15d263d6d5b63840a8e5b64e04b382fdb079/valid-wordle-words.txt").content
+    wordlist=(rawwordlist.decode().split("\n"))
+    guessedWords=0
+
+    while(not guessedWords==7):
+        outbuff=""
+
         inp=input(Colorate.Color(Colors.green,">"))
 
-        if(len(list(inp))==5):
+        if((len(list(inp))==5) and (inp in wordlist)):
             inplist=list(inp)
             passlist=list(requests.get(f"https://www.nytimes.com/svc/wordle/v2/{date.today().isoformat()}.json").json()['solution'])
-            outbuff=""
             for j in range(5):
                 if(inplist[j]==passlist[j]):
                     outbuff+=(Colorate.Color(Colors.green,inplist[j]))
@@ -69,4 +74,12 @@ elif(promptinp==2):
                     outbuff+=(Colorate.Color(Colors.gray,inplist[j]))
             
             print(outbuff)
+            
+            guessedWords +=1
+        else:
+            if(inp=="0" or inp.lower()=="exit"):
+                break
+            else:
+                print(Colorate.Color(Colors.red,"Word shoud exist and have 5 letters"))
+
             
