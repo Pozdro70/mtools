@@ -1,6 +1,7 @@
 from pystyle import Colors, Colorate
 import os
 import pkg_resources
+import sys
 
 def lookForKeyInMTBX(key,tooldata):
     for i in range(len(tooldata)):
@@ -215,4 +216,7 @@ def main(debug):
         
 
 if(__name__=='__main__'):
-    main(True)
+    if(len(sys.argv)>1):
+        main("/d" in sys.argv or "/debug")
+    else:
+        main(False)
