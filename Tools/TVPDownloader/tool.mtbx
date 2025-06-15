@@ -5,6 +5,7 @@ pyreq:requirements.txt:
 command:tvpdownloader:
 aliases:tvpd,tvpdwnld:
 helpinfo:This tool allows downloading videos from tvp site:
+readme:README.md:
 
 `General
 dispname:"TVP Donwloader":
