@@ -84,7 +84,8 @@ def pyLaunchTool(cmd,args):
     if(args==None):
         os.system("python "+str(mainFile))
     else:
-        os.system("python "+str(mainFile)+args)
+        
+        os.system("python "+str(mainFile)+" "+' '.join(args))
 
 
     os.chdir("../")#go up one folder
@@ -98,11 +99,13 @@ def getDefaultCMDHelpPage(cmd):
         return "Clears the console"
     elif(cmd=="exit"):
         return "Exits mtools"
+    elif(cmd=="refresh"):
+        return "Restarts mtools"
 
 def main(debug):
-    builtincmds=["exit","clear","help"]
-    allcmds=["0","exit","cls","clear","help"]
-    cmds=["exit","clear","help"]
+    builtincmds=["exit","clear","help","refresh"]
+    allcmds=["0","exit","cls","clear","help","cmdlist","ref","refresh","mtools"] #mtools=refresh
+    cmds=["exit","clear","help","refresh"]
     os.system('cls' if os.name == 'nt' else 'clear')
 
     if debug: print(Colorate.Color(Colors.orange,"[i] checking file structure..."))
@@ -129,7 +132,10 @@ def main(debug):
                     tooldata=toolfile.readlines()
                     toolfile.close()
 
-                if(tooldata == "no data" or tooldata == ' ' or tooldata=='' or tooldata==None):
+                with open("tool.mtbx", 'r') as file_obj:
+                    first_char = file_obj.read(1)
+
+                if(tooldata == "no data" or tooldata == ' ' or tooldata=='' or tooldata==None or not(first_char)):
                     if debug: print(Colorate.Color(Colors.red,"[!] File tool.mtbx: file is empty ("+str(toolsDir[i])+")"))
                 else:
                     if(lookForKeyInMTBX("lang",tooldata).lower()=="py" or lookForKeyInMTBX("lang",tooldata).lower()=="python"):
@@ -198,7 +204,11 @@ def main(debug):
 
         if(prompt.split(' ')[0] == "exit" or prompt.split(' ')[0] == "0"):
             print(Colorate.Color(Colors.green,"Goodbye!"))
-        
+            exit()
+
+        if(prompt.split(' ')[0] == "ref" or prompt.split(' ')[0] == "refresh" or prompt.split(' ')[0] == "mtools"):
+            main(debug)
+
         if(prompt.split(' ')[0] == "cmdlist" or prompt.split(' ')[0] == "help"):
             for cmd in cmds:
                 if(cmd in builtincmds):
@@ -218,13 +228,13 @@ def main(debug):
             if(not(getMTBXKeyFromCmd("lang",prompt.split(' ')[0]) == None)):
                 if(getMTBXKeyFromCmd("lang",prompt.split(' ')[0]).lower()=="py"):
                     if(len(prompt.split(' '))>1):
-                        pyLaunchTool(prompt.split(' ')[0],prompt.split(' ')[1])
+                        pyLaunchTool(prompt.split(' ')[0],prompt.split(' ')[1:])
                     else:
                         pyLaunchTool(prompt.split(' ')[0],None)
         
 
 if(__name__=='__main__'):
     if(len(sys.argv)>1):
-        main("/d" in sys.argv or "/debug")
+        main("/d" in sys.argv or "--debug")
     else:
         main(False)
