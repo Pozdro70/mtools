@@ -5,6 +5,7 @@ pyreq:requirements.txt:
 command:wordleanwser:
 aliases:wordle,wordlea:
 helpinfo:This tool allows getting todays wordle anwser and search for wordle anwsers from custom date:
+readme:None:
 
 `General
 dispname:"Wordle Anwser":

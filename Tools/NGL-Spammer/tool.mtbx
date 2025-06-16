@@ -5,6 +5,7 @@ pyreq:requirements.txt:
 command:nglspammer:
 aliases:ngls,nglspam:
 helpinfo:Tool for Spamming on NGL:
+readme:README.md:
 
 `General
 dispname:"NGL Spammer":

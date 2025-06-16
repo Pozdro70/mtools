@@ -115,10 +115,8 @@ if(quality =='0' or quality==''):
     retryDownload()    
 else:
     try:
+        
         download_video(url, int(quality))
     except:
         print("Incorrect quality input")
-        os.chdir("../")
         quit()
-
-os.chdir("../")

@@ -1,0 +1,14 @@
+`Tool
+lang:py:
+main:commandCreator.py:
+pyreq:requirements.txt:
+command:commandcreator:
+aliases:cc,cmdc:
+helpinfo:This tool makes it more easy to create own commands:
+readme:None:
+
+`General
+dispname:"ToolCreator":
+credits:"pozdro70":
+branch:"MGUI1":
+version:"1.0.0":
