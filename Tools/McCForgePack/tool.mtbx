@@ -1,0 +1,14 @@
+`Tool
+lang:py:
+main:main.py:
+pyreq:requirements.txt:
+command:curseforgecracker:
+aliases:cfc,cfcracker:
+helpinfo:Curseforge Mod Downloader:
+readme:None:
+
+`General
+dispname:Curseforge Modpack Downloader:
+credits:Pozdro70:
+branch:NGUI1:
+version:0.1.1:

@@ -1,0 +1,15 @@
+`Tool
+lang:py:
+main:packagemanager.py:
+pyreq:requirements.txt:
+command:mtoolspackagemanager:
+aliases:mtpm,pm:
+helpinfo:Mtools Package manager used to download tools/packages:
+readme:None:
+
+`General
+dispname:MToolsPackageManager:
+credits:Pozdro70:
+branch:MGUI1:
+version:1.0.0:
+@Created using CC

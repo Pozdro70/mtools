@@ -194,7 +194,7 @@ def main(debug):
     prompt =""
 
     while not (prompt == "exit" or prompt == "0"):
-        prompt=input(Colorate.Horizontal(Colors.purple_to_red,"[mtools]>"))
+        prompt=input(Colorate.Horizontal(Colors.purple_to_red,f"[mtools]>"))
     
         if(not (prompt.split(' ')[0] in allcmds)):
             print(Colorate.Color(Colors.red,"Command not found!"))
